@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import unittest
 
+from src.game_server_sim.constants import ROOM_DURATION_SECONDS
 from src.game_server_sim.performance_manager import PerformanceManager
 from src.game_server_sim.server_manager import ServerManager
 from src.game_server_sim.simulation_engine import SimulationEngine
@@ -53,7 +54,7 @@ class SimulationEngineTests(unittest.TestCase):
         initial_room_ids = set(self.engine.server_manager.rooms.keys())
         self.assertGreaterEqual(len(initial_room_ids), 1)
 
-        self.clock.advance(60.0)
+        self.clock.advance(ROOM_DURATION_SECONDS)
         self.engine.tick()
 
         remaining_room_ids = set(self.engine.server_manager.rooms.keys())

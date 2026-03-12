@@ -11,8 +11,6 @@ from .constants import (
     ACTIVE_REGION_SPAWN_PROBABILITY,
     PLAYER_GENERATION_INTERVAL_SECONDS,
     REGION_NAMES,
-    WORLD_HEIGHT,
-    WORLD_WIDTH,
 )
 from .performance_manager import PerformanceManager
 from .server_manager import ServerManager
@@ -147,7 +145,8 @@ class SimulationEngine:
         if use_active_region:
             region = random.choice(active_regions)
             return self.server_manager.random_point_in_region(region)
-        return random.uniform(0.0, WORLD_WIDTH), random.uniform(0.0, WORLD_HEIGHT)
+        region = random.choice(list(REGION_NAMES.keys()))
+        return self.server_manager.random_point_in_region(region)
 
     def _refresh_cqi(self) -> None:
         self._regional_cqi = self.performance_manager.calculate_regional_cqi(self.server_manager)

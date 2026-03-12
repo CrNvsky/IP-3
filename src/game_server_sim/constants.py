@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-ROOM_DURATION_SECONDS = 60.0
+ROOM_DURATION_SECONDS = 15.0
 MAX_PLAYERS_PER_ROOM = 5
 SIMULATION_TICK_MS = 200
 PLAYER_GENERATION_INTERVAL_SECONDS = 0.1
@@ -77,7 +77,6 @@ PRESET_SERVERS: tuple[dict[str, int | str], ...] = (
 )
 
 MAP_ASSET_CANDIDATES: tuple[str, ...] = (
-    "map.png",
     "world_map.png",
     "assets/world_map.png",
     "assets/world_map.gif",

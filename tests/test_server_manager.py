@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import unittest
 
+from src.game_server_sim.constants import ROOM_DURATION_SECONDS
 from src.game_server_sim.server_manager import ServerManager
 
 
@@ -42,7 +43,7 @@ class ServerManagerTests(unittest.TestCase):
             self.manager.assign_player_to_nearest_server(player, now=0.0)
         self.manager.create_rooms_from_free_players(now=0.0)
 
-        self.manager.expire_rooms(now=60.0)
+        self.manager.expire_rooms(now=ROOM_DURATION_SECONDS)
 
         self.assertEqual(len(self.manager.rooms), 0)
         self.assertEqual(len(self.manager.players), 0)

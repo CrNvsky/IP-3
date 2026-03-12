@@ -2,15 +2,16 @@ from __future__ import annotations
 
 import unittest
 
+from src.game_server_sim.constants import ROOM_DURATION_SECONDS
 from src.game_server_sim.room import Room
 from src.game_server_sim.server import Server
 
 
 class EntityTests(unittest.TestCase):
     def test_room_expires_after_duration(self) -> None:
-        room = Room(room_id=1, room_key="A1B2C3", server_id=1, expires_at=70.0)
-        self.assertFalse(room.is_expired(69.0))
-        self.assertTrue(room.is_expired(70.0))
+        room = Room(room_id=1, room_key="A1B2C3", server_id=1, expires_at=10.0 + ROOM_DURATION_SECONDS)
+        self.assertFalse(room.is_expired(10.0 + ROOM_DURATION_SECONDS - 1.0))
+        self.assertTrue(room.is_expired(10.0 + ROOM_DURATION_SECONDS))
 
     def test_server_load_ratio_and_update(self) -> None:
         room = Room(room_id=1, room_key="A1B2C3", server_id=1, expires_at=60.0, player_ids=[1, 2, 3])
